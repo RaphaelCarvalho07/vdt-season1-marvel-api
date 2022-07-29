@@ -46,3 +46,18 @@ Cypress.Commands.add('back2ThePast', () => {
         expect(response.status).to.eql(200)
     })
 })
+
+// POST requsição que cria o cadastro do personagem
+Cypress.Commands.add('postCharacter', (payload) => {
+    cy.api({
+        method: 'POST',
+        url: '/characters',
+        body: payload,
+        headers: {
+            Authorization: Cypress.env('token')
+        },
+        failOnStatusCode: false
+    }).then((response) => {
+        return response
+    })
+})
