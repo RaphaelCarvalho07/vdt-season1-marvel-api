@@ -53,3 +53,53 @@ describe('GET /characters', () => {
         })
     })
 })
+
+describe.only('GET /character/id', () => {
+
+    before(() => {
+        cy.back2ThePast()
+        cy.setToken()
+    })
+
+    const tonyStark = {
+        name: 'Tony Stark',
+        alias: 'Homem de Ferro',
+        team: [
+            'Vingadores'
+        ],
+        active: true
+    }
+
+    context('quando há um personagem cadastrado', () => {
+
+        before(() => {
+            cy.postCharacter(tonyStark)
+                .then((response) => {
+                    Cypress.env('characterId', response.body.character_id)
+                })
+        })
+
+        it('deve buscar o personagem pelo id', () => {
+
+            const id = Cypress.env('characterId')
+            cy.getCharactersById(id)
+                .then((response) => {
+                    expect(response.status).to.eql(200)
+                    expect(response.body.alias).to.eql('Homem de Ferro')
+                    expect(response.body.team).to.eql(['Vingadores'])
+                    expect(response.body.active).to.eql(true)
+                })
+        })
+    })
+
+    context('quando tenta buscar por id inexistente', () => {
+
+        it('deve retornar status code 404', () => {
+            const id = '62e45de09a8304a30105e2df'
+            cy.getCharactersById(id)
+                .then((response) => {
+                    expect(response.status).to.eql(404)
+                })
+        })
+    })
+})
