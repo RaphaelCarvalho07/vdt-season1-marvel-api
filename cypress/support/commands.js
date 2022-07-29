@@ -74,3 +74,9 @@ Cypress.Commands.add('getCharacters', (payload) => {
         return response
     })
 })
+
+Cypress.Commands.add('populateCharacters', (characters) => {
+    characters.forEach((c) => {
+        cy.postCharacter(c)
+    })
+})
