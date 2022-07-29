@@ -75,9 +75,22 @@ Cypress.Commands.add('getCharacters', () => {
     })
 })
 
-Cypress.Commands.add('getCharactersById', (characterId) => {
+Cypress.Commands.add('getCharacterById', (characterId) => {
     cy.api({
         method: 'GET',
+        url: `/characters/${characterId}`,
+        headers: {
+            Authorization: Cypress.env('token')
+        },
+        failOnStatusCode: false
+    }).then((response) => {
+        return response
+    })
+})
+
+Cypress.Commands.add('deleteCharacterById', (characterId) => {
+    cy.api({
+        method: 'DELETE',
         url: `/characters/${characterId}`,
         headers: {
             Authorization: Cypress.env('token')

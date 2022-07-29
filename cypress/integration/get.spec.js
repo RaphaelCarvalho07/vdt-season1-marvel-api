@@ -54,7 +54,7 @@ describe('GET /characters', () => {
     })
 })
 
-describe.only('GET /character/id', () => {
+describe('GET /character/id', () => {
 
     before(() => {
         cy.back2ThePast()
@@ -82,7 +82,7 @@ describe.only('GET /character/id', () => {
         it('deve buscar o personagem pelo id', () => {
 
             const id = Cypress.env('characterId')
-            cy.getCharactersById(id)
+            cy.getCharacterById(id)
                 .then((response) => {
                     expect(response.status).to.eql(200)
                     expect(response.body.alias).to.eql('Homem de Ferro')
@@ -96,7 +96,7 @@ describe.only('GET /character/id', () => {
 
         it('deve retornar status code 404', () => {
             const id = '62e45de09a8304a30105e2df'
-            cy.getCharactersById(id)
+            cy.getCharacterById(id)
                 .then((response) => {
                     expect(response.status).to.eql(404)
                 })
