@@ -5,7 +5,7 @@ describe('POST /characters', () => {
     before(() => {
         cy.back2ThePast()
         cy.setToken()
-        
+
     })
 
     it('deve cadastrar um personagem', () => {
@@ -26,6 +26,7 @@ describe('POST /characters', () => {
             }
         }).then((response) => {
             expect(response.status).to.eql(201)
+            expect(response.body.character_id.length).to.eql(24)
         })
     })
 })
