@@ -3,7 +3,6 @@
 describe('DELETE /characters/id', () => {
 
     before(() => {
-        cy.back2ThePast()
         cy.setToken()
     })
 

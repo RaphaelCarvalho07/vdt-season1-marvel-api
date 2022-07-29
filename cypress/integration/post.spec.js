@@ -3,12 +3,11 @@
 describe('POST /characters', () => {
 
     before(() => {
-        cy.back2ThePast()
         cy.setToken()
 
     })
     context('quando o personagem é novo', () => {
-        
+
         const character = {
             name: 'Wanda Maximoff',
             alias: 'Feiticeira Escalarte',
@@ -16,7 +15,7 @@ describe('POST /characters', () => {
             active: true
         }
 
-        it('deve conseguir cadastrar', () => {             
+        it('deve conseguir cadastrar', () => {
 
             cy.postCharacter(character)
                 .then((response) => {

@@ -26,7 +26,6 @@ describe('GET /characters', () => {
         ]
 
         before(() => {
-            cy.back2ThePast()
             cy.setToken()
             cy.populateCharacters(characters)
         })
@@ -57,7 +56,6 @@ describe('GET /characters', () => {
 describe('GET /character/id', () => {
 
     before(() => {
-        cy.back2ThePast()
         cy.setToken()
     })
 
