@@ -3,18 +3,9 @@
 describe('POST /characters', () => {
 
     before(() => {
-        cy.request({
-            method: 'POST',
-            url: '/sessions',
-            body: {
-                email: 'koi@qacademy.io',
-                password: 'qa-cademy'
-            }
-        }).then((response) => {
-            expect(response.status).to.eql(200)
-            cy.log(response.body.token)
-            Cypress.env('token', response.body.token)
-        })
+        cy.back2ThePast()
+        cy.setToken()
+        
     })
 
     it('deve cadastrar um personagem', () => {
