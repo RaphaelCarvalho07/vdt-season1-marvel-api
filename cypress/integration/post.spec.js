@@ -2,10 +2,6 @@
 
 describe('POST /characters', () => {
 
-    before(() => {
-        cy.setToken()
-
-    })
     context('quando o personagem é novo', () => {
 
         const character = {

@@ -26,7 +26,6 @@ describe('GET /characters', () => {
         ]
 
         before(() => {
-            cy.setToken()
             cy.populateCharacters(characters)
         })
 
@@ -54,10 +53,6 @@ describe('GET /characters', () => {
 })
 
 describe('GET /character/id', () => {
-
-    before(() => {
-        cy.setToken()
-    })
 
     const tonyStark = {
         name: 'Tony Stark',
