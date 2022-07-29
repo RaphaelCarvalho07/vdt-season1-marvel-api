@@ -61,3 +61,16 @@ Cypress.Commands.add('postCharacter', (payload) => {
         return response
     })
 })
+
+Cypress.Commands.add('getCharacters', (payload) => {
+    cy.api({
+        method: 'GET',
+        url: '/characters',
+        headers: {
+            Authorization: Cypress.env('token')
+        },
+        failOnStatusCode: false
+    }).then((response) => {
+        return response
+    })
+})
